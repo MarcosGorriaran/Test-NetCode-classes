@@ -27,7 +27,15 @@ public class ExampleNetworkDiscovery : NetworkDiscovery<DiscoveryBroadcastData, 
 
     public void Awake()
     {
-        m_NetworkManager = GetComponent<NetworkManager>();
+        if(NetworkManager.Singleton != null)
+        {
+            m_NetworkManager = NetworkManager.Singleton;
+        }
+        else
+        {
+            Destroy(this);
+        }
+        
     }
 
     public void Update()
